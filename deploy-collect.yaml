@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: electricity-load-capture
+  labels:
+    app: electricity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: electricity
+  template:
+    metadata:
+      labels:
+        app: electricity
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: "edgenode1"
+      containers:
+      - name: electricity
+        image: electricity-load-capture:test2
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true

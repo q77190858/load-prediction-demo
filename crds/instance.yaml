@@ -1,0 +1,24 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: electricity
+  labels:
+    description: 'electricity'
+    manufacturer: 'test'
+spec:
+  deviceModelRef:
+    name: electricity-model
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: ''
+            operator: In
+            values:
+              - edgenode1
+status:
+  twins:
+    - propertyName: electricity-status
+      desired:
+        metadata:
+          type: string
+        value: ''

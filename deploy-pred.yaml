@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: electricity-load-pred
+  labels:
+    app: electricity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: electricity
+  template:
+    metadata:
+      labels:
+        app: electricity
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: "node"
+      containers:
+      - name: electricity
+        image: electricity-load-pred:test1
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true

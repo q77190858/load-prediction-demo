@@ -1,0 +1,13 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+  name: electricity-model
+  namespace: default
+spec:
+  properties:
+    - name: electricity-status
+      description: Electricity load collected from the edge device
+      type:
+        string:
+          accessMode: ReadOnly
+          defaultValue: ''
